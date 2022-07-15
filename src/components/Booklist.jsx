@@ -11,7 +11,11 @@ const Booklist = ({language, getData}) => {
       );
     }, [language, getData]);
   
-    console.log(bookData);
+    // console.log(bookData);
+    //クリックしたらプレビューに飛べる
+    const openBookPage = (url)=>{
+      window.open(url);
+    }
 
   return (
     <BookListContainer>
@@ -19,7 +23,7 @@ const Booklist = ({language, getData}) => {
         <p>now loading...</p>
       ) : (
         bookData.data.items.map((x, index) => (
-        <BookInfo key={index}>
+        <BookInfo key={index} onClick={(e)=>openBookPage(x.volumeInfo.previewLink)} >
             <BookTitle>{x.volumeInfo.title}</BookTitle>
             <BookAuthors> {x.volumeInfo.authors}</BookAuthors>
             {x.volumeInfo.imageLinks?
